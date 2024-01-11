@@ -1,14 +1,17 @@
-let uscore = 0;
-let cscore = 0;
+
+
 
 function playRound(playerSelection, computerSelection){
+    let uscore = 0;
+    let cscore = 0;
+
     
     if(computerSelection== 'stone' && playerSelection == 'paper') {
         cscore = cscore + 1;
         alert("Paper Covers the stone!!");
     } else if (computerSelection== 'stone ' && playerSelection == 'scissor'){
         uscore = uscore + 1;
-        alert ('Stone Break the Scissor');
+        alert('Stone Break the Scissor');
     } else if(computerSelection== 'paper' && playerSelection == 'stone'){
         uscore = uscore+1;
         alert("Paper Covers the stone!!");
@@ -17,31 +20,28 @@ function playRound(playerSelection, computerSelection){
         alert ("Sciccors cuts the Paper");
     } else if (computerSelection== 'scissor' && playerSelection == 'paper'){
         uscore = uscore+1;
-        alert ("Sciccors cuts the Paper");
+        alert("Sciccors cuts the Paper");
     } else if(computerSelection== 'scissor' && playerSelection == 'stone'){
         cscore = cscore +1;
-        alert ('Stone Break the Scissor');
+        alert('Stone Break the Scissor');
     } else{
-        alert ('Tie')
+        alert('Tie')
     }
-    prompt("user : "+ uscore + "com :"+ cscore);
+   
+    return("user : "+ uscore + "com :"+ cscore) ;
 }
-
-const computerSelection = getComputerChoice();
-const playerSelection = getUserChoice();
 
 
 function getComputerChoice(){
 var result = ['stone', 'paper', 'scissor']
 [Math.floor(Math.random() * 3)];
-return result;
+return ;
 }
 
 
-function getUserChoice(){
-const userInput = prompt("Enter your choice:");
-return userInput;
-}
-for(i=1;i<3;i++){
-    prompt(playRound(playerSelection, computerSelection));
+
+for(i=0;i<3;i++){
+    const playerSelection =prompt("Enter your chce:");
+    const computerSelection = getComputerChoice();
+    alert(playRound(playerSelection, computerSelection));
 }

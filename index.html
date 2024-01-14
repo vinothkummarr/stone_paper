@@ -1,12 +1,168 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stone-Paper</title>
-  <script src="script.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+  <div class="container">
+    <h1>Stone Paper Scissor</h1>
+    <h3>Choose Your Weapon</h3>
+    <h4>First Five to Win</h4>
+    <button class="start-button" id="strt" onclick="start()">Start</button>
+    <div class="button-grps">
+      <button class="user_val_btn" id="stone">Stone</button>
+      <button class="user_val_btn" id="paper">Paper</button>
+      <button class="user_val_btn" id="scissor">Scissor</button>
+    </div>
+    <div class="scores">
+
+      <div class="player-score">
+        <h6>Player Score</h6>
+        <div class="score-board" ><span id="sb-p"></span></div>
+      </div>
+
+      <div class="computer-score">
+        <h6>Computer Score</h6>
+        <div class="score-board" id="sb-c"></div>
+      </div>
+
+    </div>
+    <div id="gameOver" class="floating"><p>Game Over</p><p id="gameovermessage"></p></div>
+    <div class="result-score">
+      <h6>Result</h6>
+      <div class="score-board" id="sb-r">
+      </div>
+      <div id ='winning'></div>
+    </div>
+    <button class="play-again">Play Again</button>
+
+  </div>
+
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+  <script>
+
+
+    let uscore = 0;
+    let cscore = 0;
+    
+    const stone = document.getElementById('stone')
+    const paper = document.getElementById('paper')
+    const scissor = document.getElementById('scissor')
+    const player_score = document.querySelector('#sb-p')
+    const play_again = document.querySelector('.play-again')
+
+    let valueee =''
+    stone.addEventListener('click', () => playGame('stone'));
+    paper.addEventListener('click', () => playGame('paper'));
+    scissor.addEventListener('click', () => playGame('scissor'));
+
+    function getComputerChoice() {
+      var result = ['stone', 'paper', 'scissor']
+      [Math.floor(Math.random() * 3)];
+      return result;
+    }
+
+    
+    function playRound(playerSelection, computerSelection) {
+
+      textCase = ''
+      winner =''
+
+      if (computerSelection == 'stone' && playerSelection == 'paper') {
+        cscore++;
+        winner ='Computer Wins'
+        textCase = "Paper Covers the stone!!";
+      } else if (computerSelection == 'stone' && playerSelection == 'scissor') {
+        winner= 'You Win'
+        uscore++;
+        textCase = 'Stone Break the Scissor';
+      } else if (computerSelection == 'paper' && playerSelection == 'stone') {
+        uscore++;
+        textCase = "Paper Covers the stone!";
+        winner ='You Win'
+      } else if (computerSelection == 'paper' && playerSelection == 'scissor') {
+        cscore++;
+        textCase = "Sciccors cuts the Paper";
+        winner = 'Computer Wins'
+      } else if (computerSelection == 'scissor' && playerSelection == 'paper') {
+        uscore++;
+        textCase = "Sciccors cuts the Paper";
+        winner ='You win'
+      } else if (computerSelection == 'scissor' && playerSelection == 'stone') {
+        cscore++;
+        textCase = 'Stone Break the Scissor';
+        winner ='Computer Wins'
+      } else {
+        textCase = 'Tie'
+        winner ='Better Luck Next Time'
+      }
+      const finalResult = [uscore, cscore, textCase, winner]
+      return finalResult
+    }
+
+    function playGame(playerSelection) { 
+      const computerSelection = getComputerChoice();
+      const resultv = (playRound(playerSelection, computerSelection))
+      document.getElementById('sb-r').innerText = textCase
+      document.getElementById('sb-c').innerText = cscore
+      document.getElementById('sb-p').innerText = uscore
+      document.getElementById('winning').innerText = winner
+      if ((cscore >=5) || (uscore>=5)){
+        
+        document.getElementById('gameOver').style.display='block'
+        document.getElementById('winning').innerText='Game Over'
+        if(cscore==5){
+          document.getElementById('gameovermessage').innerText='Computer Wins the Match !!'
+        }
+        if(uscore==5){
+          document.getElementById('gameovermessage').innerText='You Win  the Match'
+        }
+        
+        stone.disabled =true
+        paper.disabled =true
+        scissor.disabled =true
+      }
   
+    }
+    play_again.addEventListener('click' ,() =>{
+      uscore=0
+      cscore=0
+      document.getElementById('sb-r').innerText = ''
+      document.getElementById('sb-c').innerText = uscore
+      document.getElementById('sb-p').innerText = cscore
+      document.getElementById('winning').innerText=''
+      document.getElementById('gameOver').style.display ='none'
+      stone.disabled =false
+      paper.disabled =false
+      scissor.disabled =false
+      
+    })
+
+      
+
+
+  
+      
+    
+
+    
+
+  </script>
 </body>
+
 </html>
+
+function getPlayerSelection() {
+  prompt('SK')
+}

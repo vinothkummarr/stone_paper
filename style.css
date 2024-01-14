@@ -22,6 +22,8 @@ h4{
 }
 h6{
     font-size: 25px;
+    font-family: 'Salsa', cursive;
+    color: #B6BBC4;
 
 }
 .button-grps button{
@@ -31,23 +33,27 @@ h6{
     height: 200px;
     width: 200px;
     
+    
+}
+.user_val_btn{
+
+    
 }
 .button-grps{
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
     margin-top: 30px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    
+    
 }
 .scores{
     display: flex;
     flex-wrap: wrap;
     gap: 0px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }
 .score-board{
     width: 200px;
@@ -104,4 +110,9 @@ h6{
     text-align: center;
     font-size: 30px;
     color: #161A30;
+}
+#winning{
+    color: #B6BBC4;
+    font-size: 25px;
+    margin-top: 15px;
 }
